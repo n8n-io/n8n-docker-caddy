@@ -1,2 +1,8 @@
-# n8n-digital-ocean
-Get up and running with n8n on DigitalOcean
+# n8n-docker-caddy
+
+Get up and running with n8n on the following platforms:
+
+* [DigitalOcean tutorial](https://docs.n8n.io/hosting/server-setups/digital-ocean/)
+* Hetzner Cloud tutorial
+
+If you have questions after trying the tutorials, check out the [forums](https://community.n8n.io/).
