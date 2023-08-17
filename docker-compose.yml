@@ -12,6 +12,12 @@ services:
       - ${DATA_FOLDER}/caddy_config:/config
       - ${DATA_FOLDER}/caddy_config/Caddyfile:/etc/caddy/Caddyfile
 
+  initContainer:
+    image: busybox
+    command: ["sh", "-c", "chown -R 1000:1000 /home/node/.n8n"]
+    volumes:
+      - ${DATA_FOLDER}/.n8n:/home/node/.n8n
+
   n8n:
     image: n8nio/n8n
     restart: always
@@ -27,6 +33,10 @@ services:
     volumes:
       - ${DATA_FOLDER}/local_files:/files
       - ${DATA_FOLDER}/.n8n:/home/node/.n8n
+    depends_on:
+      initContainer:
+        condition: service_completed_successfully
+
 volumes:
   caddy_data:
     external: true
