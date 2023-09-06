@@ -8,12 +8,12 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ${DATA_FOLDER}/caddy_data:/data
+      - caddy_data:/data
       - ${DATA_FOLDER}/caddy_config:/config
       - ${DATA_FOLDER}/caddy_config/Caddyfile:/etc/caddy/Caddyfile
 
   n8n:
-    image: n8nio/n8n
+    image: docker.n8n.io/n8nio/n8n
     restart: always
     ports:
       - 5678:5678
@@ -25,9 +25,11 @@ services:
       - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
     volumes:
+      - n8n_data:/home/node/.n8n
       - ${DATA_FOLDER}/local_files:/files
-      - ${DATA_FOLDER}/.n8n:/home/node/.n8n
+      
 volumes:
   caddy_data:
     external: true
-  caddy_config:
+  n8n_data:
+    external: true
