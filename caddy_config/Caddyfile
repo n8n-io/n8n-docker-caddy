@@ -1,4 +1,4 @@
-n8n.<domain>.<suffix> {
+n8n.gromer.dev {
     reverse_proxy n8n:5678 {
       flush_interval -1
     }
